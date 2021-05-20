@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package auth
+
+service Auth {
+   rpc LoginAuth(Empty) returns (LoginAuthResponse) {}
+   rpc GetStudentWithId(GetStudentWithIdRequest) returns (GetStudentWithIdResponse) {}
+}
+
+message GetStudentWithIdRequest {
+    int32 id = 1;
+}
+
+message GetStudentWithIdResponse {
+    string gcn = 1;
+    string name = 2;
+}
