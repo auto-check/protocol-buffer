@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package macro
+
+service Macro {
+   rpc AddWork(AddWorkRequest) returns (AddWorkResponse) {}
+   rpc RemoveWork(RemoveWorkRequest) returns (RemoveWorkResponse) {}
+   rpc GetLogStream(GetLogStreamRequest) returns (stream GetLogStreamResponse)
+}
+
+message AddWorkRequest {
+    string Name = 1;
+    string Gcn = 2;
+    string Password = 3;
+    string Birth = 4;
+}
+
+message AddWorkResponse {
+    uint32 Status = 1;
+    sint32 Code = 2;
+    string Message = 3;
+    int32  JobID = 4
+}
+
+message RemoveWorkRequest {
+    uint32 ID = 1;
+}
+
+message RemoveWorkResponse {
+    uint32 Status = 1;
+    sint32 Code = 2;
+    string Message = 3;
+}
+
+message GetLogStreamRequest {
+
+}
+
+message GetLogStreamResponse {
+
+}
