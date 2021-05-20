@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package auth
+
+service Auth {
+   rpc GetLogListWithID(GetLogListWithIDRequest) returns (GetLogListWithIDResponse) {}
+   rpc GetStudentWithId(GetStudentWithIdRequest) returns (GetStudentWithIdResponse) {}
+   rpc ControlMacro(ControlMacroRequest) returns (ControlMacroResponse) {}
+}
+
+message GetLogListWithIDRequest {
+
+}
+
+message GetLogListWithIDResponse {
+    repeated Log Logs = 1
+}
+
+message GetStudentWithIdResponse {
+    string gcn = 1;
+    string name = 2;
+}
+
+message ControlMacroRequest {
+    int32 ID = 1;
+    bool onoff = 2;
+}
+
+message Log {
+
+}
