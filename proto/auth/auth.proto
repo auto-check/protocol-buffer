@@ -1,10 +1,26 @@
 syntax = "proto3";
 
-package auth
+package auth;
+
+option go_package = ".;authproto";
 
 service Auth {
-   rpc LoginAuth(Empty) returns (LoginAuthResponse) {}
+   rpc LoginAuth(LoginAuthRequest) returns (LoginAuthResponse) {}
    rpc GetStudentWithId(GetStudentWithIdRequest) returns (GetStudentWithIdResponse) {}
+}
+
+message LoginAuthRequest {
+    string id = 1;
+    string password = 2;
+    string authorizationCode = 3;
+}
+
+message LoginAuthResponse {
+    uint32 status = 1;
+    sint32 code = 2;
+    string message = 3;
+    string accessToken = 4;
+    string refreshToken = 5;
 }
 
 message GetStudentWithIdRequest {
