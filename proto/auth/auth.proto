@@ -16,11 +16,8 @@ message LoginAuthRequest {
 }
 
 message LoginAuthResponse {
-    uint32 status = 1;
-    sint32 code = 2;
-    string message = 3;
-    string accessToken = 4;
-    string refreshToken = 5;
+    string accessToken = 1;
+    string refreshToken = 2;
 }
 
 message GetStudentWithIdRequest {
