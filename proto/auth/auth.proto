@@ -4,15 +4,20 @@ package auth;
 
 option go_package = ".;authproto";
 
+import "google/api/annotations.proto";
+
 service Auth {
-   rpc LoginAuth(LoginAuthRequest) returns (LoginAuthResponse) {}
+   rpc LoginAuth(LoginAuthRequest) returns (LoginAuthResponse) {
+    option(google.api.http)={
+        get: "/auth/callback"
+    };
+   }
+
    rpc GetStudentWithId(GetStudentWithIdRequest) returns (GetStudentWithIdResponse) {}
 }
 
 message LoginAuthRequest {
-    string id = 1;
-    string password = 2;
-    string authorizationCode = 3;
+    string authorizationCode = 1;
 }
 
 message LoginAuthResponse {
