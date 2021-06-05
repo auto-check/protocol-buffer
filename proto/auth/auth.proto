@@ -17,7 +17,7 @@ service Auth {
 }
 
 message LoginAuthRequest {
-    string authorizationCode = 1;
+    string code = 1;
 }
 
 message LoginAuthResponse {
