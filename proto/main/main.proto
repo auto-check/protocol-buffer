@@ -1,28 +1,37 @@
 syntax = "proto3";
 
-package auth
+package main;
+
+option go_package = ".;mainproto";
+
+import "google/protobuf/empty.proto";
 
 service Auth {
-   rpc GetLogListWithID(GetLogListWithIDRequest) returns (GetLogListWithIDResponse) {}
-   rpc GetStudentWithId(GetStudentWithIdRequest) returns (GetStudentWithIdResponse) {}
-   rpc ControlMacro(ControlMacroRequest) returns (ControlMacroResponse) {}
+   rpc GetLogListWithID(google.protobuf.Empty) returns (GetLogListWithIDResponse) {}
+   rpc CreateWorkWithID(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+   rpc GetMacroStatus(google.protobuf.Empty) returns (GetMacroStatusResponse) {}
+   rpc GetMacroSecret(google.protobuf.Empty) returns (GetMacroSecretResponse) {}
+   rpc ControlMacro(ControlMacroRequest) returns (google.protobuf.Empty) {}
 }
 
-message GetLogListWithIDRequest {
-
-}
+message GetLogListWithIDRequest {}
 
 message GetLogListWithIDResponse {
-    repeated Log Logs = 1
+    repeated Log Logs = 1;
 }
 
-message GetStudentWithIdResponse {
+message GetMacroStatusResponse {
     string gcn = 1;
     string name = 2;
+    bool onoff = 3;
+}
+
+message GetMacroSecretResponse {
+    string password = 1;
+    string birth = 2;
 }
 
 message ControlMacroRequest {
-    int32 ID = 1;
     bool onoff = 2;
 }
 
