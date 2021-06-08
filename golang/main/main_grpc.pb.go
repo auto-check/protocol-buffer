@@ -19,7 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthClient interface {
 	GetLogListWithID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetLogListWithIDResponse, error)
-	CreateWorkWithID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateMacro(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetMacroStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMacroStatusResponse, error)
 	GetMacroSecret(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMacroSecretResponse, error)
 	ControlMacro(ctx context.Context, in *ControlMacroRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -42,9 +42,9 @@ func (c *authClient) GetLogListWithID(ctx context.Context, in *emptypb.Empty, op
 	return out, nil
 }
 
-func (c *authClient) CreateWorkWithID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *authClient) CreateMacro(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/main.Auth/CreateWorkWithID", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/main.Auth/CreateMacro", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func (c *authClient) ControlMacro(ctx context.Context, in *ControlMacroRequest, 
 // for forward compatibility
 type AuthServer interface {
 	GetLogListWithID(context.Context, *emptypb.Empty) (*GetLogListWithIDResponse, error)
-	CreateWorkWithID(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	CreateMacro(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	GetMacroStatus(context.Context, *emptypb.Empty) (*GetMacroStatusResponse, error)
 	GetMacroSecret(context.Context, *emptypb.Empty) (*GetMacroSecretResponse, error)
 	ControlMacro(context.Context, *ControlMacroRequest) (*emptypb.Empty, error)
@@ -97,8 +97,8 @@ type UnimplementedAuthServer struct {
 func (UnimplementedAuthServer) GetLogListWithID(context.Context, *emptypb.Empty) (*GetLogListWithIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLogListWithID not implemented")
 }
-func (UnimplementedAuthServer) CreateWorkWithID(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateWorkWithID not implemented")
+func (UnimplementedAuthServer) CreateMacro(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateMacro not implemented")
 }
 func (UnimplementedAuthServer) GetMacroStatus(context.Context, *emptypb.Empty) (*GetMacroStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMacroStatus not implemented")
@@ -140,20 +140,20 @@ func _Auth_GetLogListWithID_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_CreateWorkWithID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_CreateMacro_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).CreateWorkWithID(ctx, in)
+		return srv.(AuthServer).CreateMacro(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/main.Auth/CreateWorkWithID",
+		FullMethod: "/main.Auth/CreateMacro",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).CreateWorkWithID(ctx, req.(*emptypb.Empty))
+		return srv.(AuthServer).CreateMacro(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -224,8 +224,8 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_GetLogListWithID_Handler,
 		},
 		{
-			MethodName: "CreateWorkWithID",
-			Handler:    _Auth_CreateWorkWithID_Handler,
+			MethodName: "CreateMacro",
+			Handler:    _Auth_CreateMacro_Handler,
 		},
 		{
 			MethodName: "GetMacroStatus",
