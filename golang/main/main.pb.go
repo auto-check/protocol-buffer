@@ -339,7 +339,7 @@ var file_proto_main_main_proto_rawDesc = []byte{
 	0x74, 0x68, 0x22, 0x2b, 0x0a, 0x13, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x4d, 0x61, 0x63,
 	0x72, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6f, 0x6e, 0x6f,
 	0x66, 0x66, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x6f, 0x6e, 0x6f, 0x66, 0x66, 0x22,
-	0x05, 0x0a, 0x03, 0x4c, 0x6f, 0x67, 0x32, 0xee, 0x02, 0x0a, 0x04, 0x41, 0x75, 0x74, 0x68, 0x12,
+	0x05, 0x0a, 0x03, 0x4c, 0x6f, 0x67, 0x32, 0xee, 0x02, 0x0a, 0x04, 0x4d, 0x61, 0x69, 0x6e, 0x12,
 	0x4c, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x4c, 0x6f, 0x67, 0x4c, 0x69, 0x73, 0x74, 0x57, 0x69, 0x74,
 	0x68, 0x49, 0x44, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x1e, 0x2e, 0x6d, 0x61,
@@ -390,16 +390,16 @@ var file_proto_main_main_proto_goTypes = []interface{}{
 }
 var file_proto_main_main_proto_depIdxs = []int32{
 	5, // 0: main.GetLogListWithIDResponse.Logs:type_name -> main.Log
-	6, // 1: main.Auth.GetLogListWithID:input_type -> google.protobuf.Empty
-	6, // 2: main.Auth.CreateMacro:input_type -> google.protobuf.Empty
-	6, // 3: main.Auth.GetMacroStatus:input_type -> google.protobuf.Empty
-	6, // 4: main.Auth.GetMacroSecret:input_type -> google.protobuf.Empty
-	4, // 5: main.Auth.ControlMacro:input_type -> main.ControlMacroRequest
-	1, // 6: main.Auth.GetLogListWithID:output_type -> main.GetLogListWithIDResponse
-	6, // 7: main.Auth.CreateMacro:output_type -> google.protobuf.Empty
-	2, // 8: main.Auth.GetMacroStatus:output_type -> main.GetMacroStatusResponse
-	3, // 9: main.Auth.GetMacroSecret:output_type -> main.GetMacroSecretResponse
-	6, // 10: main.Auth.ControlMacro:output_type -> google.protobuf.Empty
+	6, // 1: main.Main.GetLogListWithID:input_type -> google.protobuf.Empty
+	6, // 2: main.Main.CreateMacro:input_type -> google.protobuf.Empty
+	6, // 3: main.Main.GetMacroStatus:input_type -> google.protobuf.Empty
+	6, // 4: main.Main.GetMacroSecret:input_type -> google.protobuf.Empty
+	4, // 5: main.Main.ControlMacro:input_type -> main.ControlMacroRequest
+	1, // 6: main.Main.GetLogListWithID:output_type -> main.GetLogListWithIDResponse
+	6, // 7: main.Main.CreateMacro:output_type -> google.protobuf.Empty
+	2, // 8: main.Main.GetMacroStatus:output_type -> main.GetMacroStatusResponse
+	3, // 9: main.Main.GetMacroSecret:output_type -> main.GetMacroSecretResponse
+	6, // 10: main.Main.ControlMacro:output_type -> google.protobuf.Empty
 	6, // [6:11] is the sub-list for method output_type
 	1, // [1:6] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

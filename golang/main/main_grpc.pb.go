@@ -14,10 +14,10 @@ import (
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion7
 
-// AuthClient is the client API for Auth service.
+// MainClient is the client API for Main service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AuthClient interface {
+type MainClient interface {
 	GetLogListWithID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetLogListWithIDResponse, error)
 	CreateMacro(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetMacroStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMacroStatusResponse, error)
@@ -25,219 +25,219 @@ type AuthClient interface {
 	ControlMacro(ctx context.Context, in *ControlMacroRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type authClient struct {
+type mainClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
-	return &authClient{cc}
+func NewMainClient(cc grpc.ClientConnInterface) MainClient {
+	return &mainClient{cc}
 }
 
-func (c *authClient) GetLogListWithID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetLogListWithIDResponse, error) {
+func (c *mainClient) GetLogListWithID(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetLogListWithIDResponse, error) {
 	out := new(GetLogListWithIDResponse)
-	err := c.cc.Invoke(ctx, "/main.Auth/GetLogListWithID", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/main.Main/GetLogListWithID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) CreateMacro(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *mainClient) CreateMacro(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/main.Auth/CreateMacro", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/main.Main/CreateMacro", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) GetMacroStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMacroStatusResponse, error) {
+func (c *mainClient) GetMacroStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMacroStatusResponse, error) {
 	out := new(GetMacroStatusResponse)
-	err := c.cc.Invoke(ctx, "/main.Auth/GetMacroStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/main.Main/GetMacroStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) GetMacroSecret(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMacroSecretResponse, error) {
+func (c *mainClient) GetMacroSecret(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMacroSecretResponse, error) {
 	out := new(GetMacroSecretResponse)
-	err := c.cc.Invoke(ctx, "/main.Auth/GetMacroSecret", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/main.Main/GetMacroSecret", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) ControlMacro(ctx context.Context, in *ControlMacroRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *mainClient) ControlMacro(ctx context.Context, in *ControlMacroRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/main.Auth/ControlMacro", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/main.Main/ControlMacro", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// AuthServer is the server API for Auth service.
-// All implementations must embed UnimplementedAuthServer
+// MainServer is the server API for Main service.
+// All implementations must embed UnimplementedMainServer
 // for forward compatibility
-type AuthServer interface {
+type MainServer interface {
 	GetLogListWithID(context.Context, *emptypb.Empty) (*GetLogListWithIDResponse, error)
 	CreateMacro(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	GetMacroStatus(context.Context, *emptypb.Empty) (*GetMacroStatusResponse, error)
 	GetMacroSecret(context.Context, *emptypb.Empty) (*GetMacroSecretResponse, error)
 	ControlMacro(context.Context, *ControlMacroRequest) (*emptypb.Empty, error)
-	mustEmbedUnimplementedAuthServer()
+	mustEmbedUnimplementedMainServer()
 }
 
-// UnimplementedAuthServer must be embedded to have forward compatible implementations.
-type UnimplementedAuthServer struct {
+// UnimplementedMainServer must be embedded to have forward compatible implementations.
+type UnimplementedMainServer struct {
 }
 
-func (UnimplementedAuthServer) GetLogListWithID(context.Context, *emptypb.Empty) (*GetLogListWithIDResponse, error) {
+func (UnimplementedMainServer) GetLogListWithID(context.Context, *emptypb.Empty) (*GetLogListWithIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLogListWithID not implemented")
 }
-func (UnimplementedAuthServer) CreateMacro(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+func (UnimplementedMainServer) CreateMacro(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMacro not implemented")
 }
-func (UnimplementedAuthServer) GetMacroStatus(context.Context, *emptypb.Empty) (*GetMacroStatusResponse, error) {
+func (UnimplementedMainServer) GetMacroStatus(context.Context, *emptypb.Empty) (*GetMacroStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMacroStatus not implemented")
 }
-func (UnimplementedAuthServer) GetMacroSecret(context.Context, *emptypb.Empty) (*GetMacroSecretResponse, error) {
+func (UnimplementedMainServer) GetMacroSecret(context.Context, *emptypb.Empty) (*GetMacroSecretResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMacroSecret not implemented")
 }
-func (UnimplementedAuthServer) ControlMacro(context.Context, *ControlMacroRequest) (*emptypb.Empty, error) {
+func (UnimplementedMainServer) ControlMacro(context.Context, *ControlMacroRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ControlMacro not implemented")
 }
-func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
+func (UnimplementedMainServer) mustEmbedUnimplementedMainServer() {}
 
-// UnsafeAuthServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AuthServer will
+// UnsafeMainServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MainServer will
 // result in compilation errors.
-type UnsafeAuthServer interface {
-	mustEmbedUnimplementedAuthServer()
+type UnsafeMainServer interface {
+	mustEmbedUnimplementedMainServer()
 }
 
-func RegisterAuthServer(s grpc.ServiceRegistrar, srv AuthServer) {
-	s.RegisterService(&Auth_ServiceDesc, srv)
+func RegisterMainServer(s grpc.ServiceRegistrar, srv MainServer) {
+	s.RegisterService(&Main_ServiceDesc, srv)
 }
 
-func _Auth_GetLogListWithID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Main_GetLogListWithID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).GetLogListWithID(ctx, in)
+		return srv.(MainServer).GetLogListWithID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/main.Auth/GetLogListWithID",
+		FullMethod: "/main.Main/GetLogListWithID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).GetLogListWithID(ctx, req.(*emptypb.Empty))
+		return srv.(MainServer).GetLogListWithID(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_CreateMacro_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Main_CreateMacro_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).CreateMacro(ctx, in)
+		return srv.(MainServer).CreateMacro(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/main.Auth/CreateMacro",
+		FullMethod: "/main.Main/CreateMacro",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).CreateMacro(ctx, req.(*emptypb.Empty))
+		return srv.(MainServer).CreateMacro(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_GetMacroStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Main_GetMacroStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).GetMacroStatus(ctx, in)
+		return srv.(MainServer).GetMacroStatus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/main.Auth/GetMacroStatus",
+		FullMethod: "/main.Main/GetMacroStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).GetMacroStatus(ctx, req.(*emptypb.Empty))
+		return srv.(MainServer).GetMacroStatus(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_GetMacroSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Main_GetMacroSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).GetMacroSecret(ctx, in)
+		return srv.(MainServer).GetMacroSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/main.Auth/GetMacroSecret",
+		FullMethod: "/main.Main/GetMacroSecret",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).GetMacroSecret(ctx, req.(*emptypb.Empty))
+		return srv.(MainServer).GetMacroSecret(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_ControlMacro_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Main_ControlMacro_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ControlMacroRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).ControlMacro(ctx, in)
+		return srv.(MainServer).ControlMacro(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/main.Auth/ControlMacro",
+		FullMethod: "/main.Main/ControlMacro",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).ControlMacro(ctx, req.(*ControlMacroRequest))
+		return srv.(MainServer).ControlMacro(ctx, req.(*ControlMacroRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
+// Main_ServiceDesc is the grpc.ServiceDesc for Main service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Auth_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "main.Auth",
-	HandlerType: (*AuthServer)(nil),
+var Main_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "main.Main",
+	HandlerType: (*MainServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetLogListWithID",
-			Handler:    _Auth_GetLogListWithID_Handler,
+			Handler:    _Main_GetLogListWithID_Handler,
 		},
 		{
 			MethodName: "CreateMacro",
-			Handler:    _Auth_CreateMacro_Handler,
+			Handler:    _Main_CreateMacro_Handler,
 		},
 		{
 			MethodName: "GetMacroStatus",
-			Handler:    _Auth_GetMacroStatus_Handler,
+			Handler:    _Main_GetMacroStatus_Handler,
 		},
 		{
 			MethodName: "GetMacroSecret",
-			Handler:    _Auth_GetMacroSecret_Handler,
+			Handler:    _Main_GetMacroSecret_Handler,
 		},
 		{
 			MethodName: "ControlMacro",
-			Handler:    _Auth_ControlMacro_Handler,
+			Handler:    _Main_ControlMacro_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
