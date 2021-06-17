@@ -5,8 +5,9 @@ package main;
 option go_package = ".;mainproto";
 
 import "google/protobuf/empty.proto";
+//import "google/api/annotations.proto";
 
-service Auth {
+service Main {
    rpc GetLogListWithID(google.protobuf.Empty) returns (GetLogListWithIDResponse) {}
    rpc CreateMacro(google.protobuf.Empty) returns (google.protobuf.Empty) {}
    rpc GetMacroStatus(google.protobuf.Empty) returns (GetMacroStatusResponse) {}
