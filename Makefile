@@ -1,15 +1,16 @@
+TARGET = main auth
+
 .PHONY: all
-
-TARGET = auth
-
 all: $(TARGET)
 
-auth:
+.PHONY: main
+main:
 	protoc --go_out golang/$@ proto/$@/$@.proto
 	protoc --go-grpc_out golang/$@ proto/$@/$@.proto
 	protoc --grpc-gateway_out golang/$@ proto/$@/$@.proto
 
-main:
+.PHONY: auth
+auth:
 	protoc --go_out golang/$@ proto/$@/$@.proto
 	protoc --go-grpc_out golang/$@ proto/$@/$@.proto
 	protoc --grpc-gateway_out golang/$@ proto/$@/$@.proto
