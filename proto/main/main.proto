@@ -24,7 +24,8 @@ message GetLogListWithIDResponse {
 message GetMacroStatusResponse {
     string gcn = 1;
     string name = 2;
-    bool onoff = 3;
+    string school = 3;
+    bool onoff = 4;
 }
 
 message GetMacroSecretResponse {
